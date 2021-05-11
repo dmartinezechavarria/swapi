@@ -1,22 +1,13 @@
 <template>
   <div class="card shadow-sm">
     <div class="card-body">
-      <CharacterImage
-        :specie="
-          character.species.length > 0 ? character.species[0].name : null
-        "
-        class="me-3"
-      />
-      <h5 class="card-title">{{ character.name }}</h5>
+      <CharacterImage :specie="specie.name" class="me-3" />
+      <h5 class="card-title">{{ specie.name }}</h5>
       <h6 class="card-subtitle text-muted">
-        {{
-          character.species.length > 0
-            ? character.species.map((specie) => specie.name).join(", ")
-            : "Human"
-        }}
+        {{ specie.classification }}
       </h6>
       <router-link
-        :to="{ name: 'Character', params: { id: character.id } }"
+        :to="{ name: 'Specie', params: { id: specie.id } }"
         class="btn btn-primary float-end"
         >View</router-link
       >
@@ -30,7 +21,7 @@ import CharacterImage from "@/components/CharacterImage.vue";
 
 export default defineComponent({
   props: {
-    character: {
+    specie: {
       type: Object,
       required: true,
     },

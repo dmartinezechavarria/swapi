@@ -37,6 +37,34 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "character" */ "../components/Character/index.vue"
       ),
   },
+  {
+    path: "/species",
+    name: "Species",
+    component: () =>
+      import(
+        /* webpackChunkName: "species" */ "../components/Species/index.vue"
+      ),
+  },
+  {
+    path: "/specie/:id(\\d+)",
+    name: "Specie",
+    component: () =>
+      import(/* webpackChunkName: "specie" */ "../components/Specie/index.vue"),
+  },
+  {
+    path: "/planets",
+    name: "Planets",
+    component: () =>
+      import(
+        /* webpackChunkName: "planets" */ "../components/Planets/index.vue"
+      ),
+  },
+  {
+    path: "/planet/:id(\\d+)",
+    name: "Planet",
+    component: () =>
+      import(/* webpackChunkName: "planet" */ "../components/Planet/index.vue"),
+  },
 ];
 
 const router = createRouter({

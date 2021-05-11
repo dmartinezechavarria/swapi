@@ -1,21 +1,21 @@
 <template>
   <font-awesome-icon
-    v-if="gender == 'female'"
-    icon="female"
+    v-if="specie == null || specie == 'Human'"
+    icon="user"
     :size="size"
     fixed-width
     class="rounded float-start mt-2"
   />
   <font-awesome-icon
-    v-else-if="gender == 'male'"
-    icon="male"
+    v-else-if="specie == 'Droid'"
+    icon="robot"
     :size="size"
     fixed-width
     class="rounded float-start mt-2"
   />
   <font-awesome-icon
     v-else
-    icon="question"
+    :icon="['fab', 'reddit-alien']"
     :size="size"
     fixed-width
     class="rounded float-start mt-2"
@@ -27,9 +27,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
-    gender: {
+    specie: {
       type: String,
-      required: true,
+      required: false,
     },
     size: {
       type: String,

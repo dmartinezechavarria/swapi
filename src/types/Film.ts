@@ -1,4 +1,6 @@
 import { Character } from "./Character";
+import { Specie } from "./Specie";
+import { Planet } from "./Planet";
 
 export interface Film {
   director: string;
@@ -9,4 +11,6 @@ export interface Film {
   title: string;
   id: number;
   characters: Character[];
+  species: Specie[];
+  planets: Planet[];
 }

@@ -1,5 +1,6 @@
 import { Specie } from "./Specie";
 import { Film } from "./Film";
+import { Planet } from "./Planet";
 
 export interface Character {
   name: string;
@@ -13,4 +14,5 @@ export interface Character {
   id: number;
   species: Specie[];
   films: Film[];
+  homeworld: Planet;
 }

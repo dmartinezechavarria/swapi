@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12">
+      <div class="col-12" v-if="film.characters.length > 0">
         <div class="row">
           <h5 class="mt-3">
             <font-awesome-icon icon="users" size="lg" fixed-width />
@@ -35,6 +35,40 @@
             class="col col-12 col-md-4"
           >
             <CharacterCard :character="character" class="mb-4" />
+          </div>
+        </div>
+      </div>
+      <div class="col-12" v-if="film.planets.length > 0">
+        <div class="row">
+          <h5 class="mt-3">
+            <font-awesome-icon icon="globe-asia" size="lg" fixed-width />
+            Planets
+          </h5>
+          <div
+            v-for="planet in film.planets"
+            :key="planet.id"
+            class="col col-12 col-md-4"
+          >
+            <PlanetCard :planet="planet" class="mb-4" />
+          </div>
+        </div>
+      </div>
+      <div class="col-12" v-if="film.species.length > 0">
+        <div class="row">
+          <h5 class="mt-3">
+            <font-awesome-icon
+              :icon="['fab', 'reddit-alien']"
+              size="lg"
+              fixed-width
+            />
+            Species
+          </h5>
+          <div
+            v-for="specie in film.species"
+            :key="specie.id"
+            class="col col-12 col-md-4"
+          >
+            <SpecieCard :specie="specie" class="mb-4" />
           </div>
         </div>
       </div>
@@ -51,6 +85,8 @@
 import { defineComponent } from "vue";
 import Loader from "@/components/Loader.vue";
 import CharacterCard from "@/components/CharacterCard.vue";
+import SpecieCard from "@/components/SpecieCard.vue";
+import PlanetCard from "@/components/PlanetCard.vue";
 import { useRoute } from "vue-router";
 import { useFilm } from "./useFilm";
 
@@ -59,6 +95,8 @@ export default defineComponent({
   components: {
     Loader,
     CharacterCard,
+    SpecieCard,
+    PlanetCard,
   },
   setup() {
     const route = useRoute();
