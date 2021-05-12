@@ -4,14 +4,19 @@ import { Specie } from "@/types/Specie";
 import { useStore } from "@/store";
 
 // eslint-disable-next-line
-export function useSpecies() {
+export function useSpecies(search = "") {
   const store = useStore();
   const species: Ref<Specie[]> = ref([]);
   const total: Ref<number> = ref(0);
   let page = 1;
 
   onMounted(async () => {
-    const result = await api.getSpecies(page, false, store.state.wookie);
+    const result = await api.getSpecies(
+      page,
+      false,
+      store.state.wookie,
+      search
+    );
     species.value = result.species;
     total.value = result.total;
   });
@@ -22,7 +27,12 @@ export function useSpecies() {
 
   const loadMore = async () => {
     page = page + 1;
-    const result = await api.getSpecies(page, false, store.state.wookie);
+    const result = await api.getSpecies(
+      page,
+      false,
+      store.state.wookie,
+      search
+    );
     species.value = species.value.concat(result.species);
     total.value = result.total;
   };

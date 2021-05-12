@@ -16,9 +16,10 @@ export const api = {
   getFilms(
     page = 1,
     relationships = false,
-    wookie = false
+    wookie = false,
+    search = ""
   ): Promise<{ films: Film[]; total: number }> {
-    return fetchData(getURL(`films/?page=${page}`), (json) => {
+    return fetchData(getURL(`films/?page=${page}`, search), (json) => {
       return Promise.all(
         json.results.map((result: Film) => {
           return proccessFilm(result, relationships, wookie);
@@ -41,9 +42,10 @@ export const api = {
   getCharacters(
     page = 1,
     relationships = false,
-    wookie = false
+    wookie = false,
+    search = ""
   ): Promise<{ characters: Character[]; total: number }> {
-    return fetchData(getURL(`people/?page=${page}`), (json) => {
+    return fetchData(getURL(`people/?page=${page}`, search), (json) => {
       return Promise.all(
         json.results.map((result: Character) => {
           return proccessCharacter(result, relationships, wookie);
@@ -70,9 +72,10 @@ export const api = {
   getSpecies(
     page = 1,
     relationships = false,
-    wookie = false
+    wookie = false,
+    search = ""
   ): Promise<{ species: Specie[]; total: number }> {
-    return fetchData(getURL(`species/?page=${page}`), (json) => {
+    return fetchData(getURL(`species/?page=${page}`, search), (json) => {
       return Promise.all(
         json.results.map((result: Specie) => {
           return proccessSpecie(result, relationships, wookie);
@@ -95,9 +98,10 @@ export const api = {
   getPlanets(
     page = 1,
     relationships = false,
-    wookie = false
+    wookie = false,
+    search = ""
   ): Promise<{ planets: Planet[]; total: number }> {
-    return fetchData(getURL(`planets/?page=${page}`), (json) => {
+    return fetchData(getURL(`planets/?page=${page}`, search), (json) => {
       return Promise.all(
         json.results.map((result: Planet) => {
           return proccessPlanet(result, relationships, wookie);
@@ -118,8 +122,10 @@ export const api = {
   },
 };
 
-function getURL(endpoint: string): string {
-  return `${API_URL}/${endpoint}`;
+function getURL(endpoint: string, search = ""): string {
+  return `${API_URL}/${endpoint}${
+    search.length > 0 ? "&search=" + encodeURIComponent(search) : ""
+  }`;
 }
 
 function fetchData<T>(

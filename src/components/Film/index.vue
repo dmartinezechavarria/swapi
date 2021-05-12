@@ -73,8 +73,8 @@
         </div>
       </div>
     </div>
-    <div v-else class="row row-cols-1">
-      <div class="col">
+    <div v-else class="row justify-content-md-center">
+      <div class="col col-1">
         <Loader />
       </div>
     </div>
